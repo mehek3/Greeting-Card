@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greeting Cards</title>
+  <style>
+    .greeting-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      margin: 10px;
+      background-color: #f9f9f9;
+      max-width: 300px;
+      text-align: center;
+    }
+    .greeting-card h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    class GreetingCard extends React.Component {
+      render() {
+        const { greeting, name } = this.props;
+        return (
+          <div className="greeting-card">
+            <h2>{greeting}</h2>
+            <p>{name}</p>
+          </div>
+        );
+      }
+    }
+
+    class App extends React.Component {
+      greetingCards = [
+        { greeting: "Happy Birthday", name: "John Doe" },
+        { greeting: "Merry Christmas", name: "Jane Doe" },
+        { greeting: "Happy New Year", name: "Jim Smith" },
+      ];
+
+      render() {
+        return (
+          <div>
+            {this.greetingCards.map((card, index) => (
+              <GreetingCard key={index} {...card} />
+            ))}
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
+</html>
